@@ -1,25 +1,27 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useState } from "react";
-import axios from "axios";
+import { useAuth } from "../hooks/useAuth";
 
 const Login = () => {
+  const { user, loading, handleLogin } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
   async function handleSubmit(e) {
     e.preventDefault();
-    axios
-      .post(
-        "http://localhost:3000/api/auth/login",
-        {
-          username,
-          password,
-        },
-        { withCredentials: true },
-      )
-      .then((res) => {
-        console.log(res);
-      });
+    await handleLogin(username, password);
+    navigate("/");
   }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#0B0F19]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
+
   return (
     <main className="min-h-screen flex items-center justify-center bg-[#0B0F19]">
       {/* Card */}
@@ -34,7 +36,9 @@ const Login = () => {
         <form className="space-y-5" onSubmit={handleSubmit}>
           {/* Email */}
           <div className="space-y-1">
-            <label htmlFor="username" className="text-sm text-gray-300">Username</label>
+            <label htmlFor="username" className="text-sm text-gray-300">
+              Username
+            </label>
             <input
               id="username"
               onInput={(e) => {
@@ -50,7 +54,9 @@ const Login = () => {
 
           {/* Password */}
           <div className="space-y-1">
-            <label htmlFor="password" className="text-sm text-gray-300">Password</label>
+            <label htmlFor="password" className="text-sm text-gray-300">
+              Password
+            </label>
             <input
               id="password"
               onInput={(e) => {

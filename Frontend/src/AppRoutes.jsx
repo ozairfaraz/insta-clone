@@ -1,16 +1,26 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Login from "./features/auth/pages/Login";
 import Register from "./features/auth/pages/Register";
+import Feed from "./features/posts/pages/Feed";
+import CreatePost from "./features/posts/pages/CreatePost";
 
-const AppRoutes = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-    </Router>
-  );
-};
+const AppRoutes = createBrowserRouter([
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/",
+    element: <Feed />,
+  },
+  {
+    path: "/create-post",
+    element: <CreatePost />,
+  },
+]);
 
 export default AppRoutes;

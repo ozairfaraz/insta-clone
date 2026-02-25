@@ -1,8 +1,15 @@
 import AppRoutes from "./AppRoutes";
+import { RouterProvider } from "react-router";
+import { AuthProvider } from "./features/auth/auth.context";
+import { PostProvider } from "./features/posts/post.context";
 function App() {
   return (
     <>
-      <AppRoutes />
+      <AuthProvider>
+        <PostProvider>
+          <RouterProvider router={AppRoutes} />
+        </PostProvider>
+      </AuthProvider>
     </>
   );
 }

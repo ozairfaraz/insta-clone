@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   profileImage: {
     type: String,
     default:
-      "https://ik.imagekit.io/https://ik.imagekit.io/aqfyg6yeg/user-profile-icon-anonymous-person-symbol-blank-avatar-graphic-vector-illustration.webp/avatar-gender-neutral-silhouette-vector-600nw-2470054311.webp",
+      "https://i.pinimg.com/736x/89/44/0d/89440dc00a45f11a0726dd469178a63c.jpg",
   },
 });
 
